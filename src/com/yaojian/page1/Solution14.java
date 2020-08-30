@@ -1,4 +1,6 @@
-package com.yaojian;
+package com.yaojian.page1;
+
+import com.yaojian.Solution;
 
 import java.util.List;
 

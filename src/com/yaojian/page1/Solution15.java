@@ -1,4 +1,6 @@
-package com.yaojian;
+package com.yaojian.page1;
+
+import com.yaojian.Solution;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

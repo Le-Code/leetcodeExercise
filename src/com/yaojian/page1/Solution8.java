@@ -1,4 +1,6 @@
-package com.yaojian;
+package com.yaojian.page1;
+
+import com.yaojian.Solution;
 
 /**
  * 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
@@ -47,7 +49,7 @@ package com.yaojian;
  *      因此返回 INT_MIN (−231) 。
  *
  */
-public class Solution8 implements Solution{
+public class Solution8 implements Solution {
     @Override
     public void solution() {
         System.out.println(myAtoi2("2147483648"));
@@ -72,7 +74,7 @@ public class Solution8 implements Solution{
         int ans = 0;
         for (; startPos < strArr.length; startPos++) {
             if (Character.isDigit(strArr[startPos])) {
-                int tmp = ((flag == 1 ? Integer. MIN_VALUE+ 1: Integer.MIN_VALUE) + (strArr[startPos] - '0')) / 10;
+                int tmp = ((flag == 1 ? Integer. MIN_VALUE + 1: Integer.MIN_VALUE) + (strArr[startPos] - '0')) / 10;
                 if (tmp > ans) {
                     return flag == 1? Integer.MAX_VALUE: Integer.MIN_VALUE;
                 }
