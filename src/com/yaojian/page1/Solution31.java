@@ -20,27 +20,45 @@ import java.util.Arrays;
  * 通过次数96,422提交次数278,549
  */
 public class Solution31 implements Solution {
-
+    private int res = Integer.MAX_VALUE;
     @Override
     public void solution() {
-        int[] nums = new int[]{1, 3, 2};
+//        int[] nums = new int[]{6,7,5,3,5,6,2,9,1,2,7,0,9};
+        int[] nums = new int[]{1, 5, 1};
         nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
 
     public void nextPermutation(int[] nums) {
-        for (int i = nums.length - 1; i > 0; i--) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (nums[i] > nums[j]) {
-                    int tmp = nums[i];
-                    for (int k = i - 1; k >= j; k--) {
-                        nums[k + 1] = nums[k];
-                    }
-                    nums[j] = tmp;
-                    return;
-                }
+        int swapIdx = nums.length - 1;
+        for (; swapIdx >= 1; swapIdx--) {
+            if (nums[swapIdx] <= nums[swapIdx - 1]) {
+                continue;
+            }
+            break;
+        }
+        if (swapIdx == 0) {
+            int right = nums.length - 1;
+            while (swapIdx < right) {
+                swap(nums, swapIdx++, right--);
+            }
+            return;
+        }
+        for (int k = nums.length - 1; k >= swapIdx; k--) {
+            if (nums[k] > nums[swapIdx - 1]) {
+                swap(nums, swapIdx - 1, k);
+                break;
             }
         }
-        Arrays.sort(nums);
+        int right = nums.length - 1;
+        while (swapIdx < right) {
+            swap(nums, swapIdx++, right--);
+        }
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 }

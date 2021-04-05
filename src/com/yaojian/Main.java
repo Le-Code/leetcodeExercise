@@ -1,13 +1,10 @@
 package com.yaojian;
 
-import com.yaojian.page1.Solution31;
+import com.yaojian.page1.Solution48;
 
-// Stashed changes
 public class Main {
-
     public static void main(String[] args) {
-	// write your code here
-        Solution solution = new Solutionx();
+        Solution solution = new Solution48();
         solution.solution();
     }
 }
