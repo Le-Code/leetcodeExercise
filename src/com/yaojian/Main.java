@@ -1,10 +1,10 @@
 package com.yaojian;
 
-import com.yaojian.page2.Solution64;
+import com.yaojian.page2.Solution67;
 
 public class Main {
     public static void main(String[] args) {
-        Solution solution = new Solution64();
+        Solution solution = new Solution67();
         solution.solution();
     }
 }
