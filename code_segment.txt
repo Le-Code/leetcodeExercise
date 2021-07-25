@@ -1,0 +1,70 @@
+#include <iostream>
+#include <set>
+
+int main(){
+	std::cout << "hello world" << std::endl;
+}
+
+bool IsSanctionedSimpleUnitIdentifier(std::string &unitIdentifier)
+{
+	std::set<std::string> unitIdetifies(
+		{
+			"acre", "bit", "byte", "celsius", "centimeter", "day",
+       		"degree", "fahrenheit", "fluid-ounce", "foot", "gallon", "gigabit",
+       		"gigabyte", "gram", "hectare", "hour", "inch", "kilobit",
+       		"kilobyte", "kilogram", "kilometer", "liter", "megabit", "megabyte",
+       		"meter", "mile", "mile-scandinavian", "millimeter", "milliliter", "millisecond",
+       		"minute", "month", "ounce", "percent", "petabyte", "pound",
+       		"second", "stone", "terabit", "terabyte", "week", "yard", "year"
+		}
+	);
+	return unitIdetifies.find(unitIdentifier) != unitIdetifies.end();
+}
+
+std::pair<std::string, std::string> IsWellFormedUnitIdentifier(std::string &unitIdentifier)
+{
+	// 1. If the result of IsSanctionedSimpleUnitIdentifier(unitIdentifier) is true, then
+	// 	a. Return true.
+	if (IsSanctionedSimpleUnitIdentifier(unitIdentifier)) {
+		return std::pair<std::string, std::string>(std::string(), std::string());
+	}
+
+	// 2. If the substring "-per-" does not occur exactly once in unitIdentifier, then
+	// 	a. Return false.
+	auto occurences = [&unitIdentifier](const std::string &dest, std::string &numerator, std::string &denominator)
+	{
+		size_t destLength = dest.length();
+		size_t pos = 0;
+		size_t pre = 0;
+		size_t count = 0;
+		while ((pos = str.unitIdentifier.find(dest)) != std::string::npos)
+		{
+			++count;
+			numerator = str.substr(0, pos);
+			pre = pos + destLength;
+			denominator = str.substr(pre);
+		}
+		return count;
+	};
+	std::string numerator;
+	std::string denominator;
+	size_t count = occurences("--per--", numerator, denominator);
+	if (count > 1)
+	{
+		return std::pair<std::string, std::string>(std::string(), std::string());
+	}
+
+	// 4. If the result of IsSanctionedSimpleUnitIdentifier(numerator) is false, then
+	//  a. Return false.
+	if (IsSanctionedSimpleUnitIdentifier(numerator)) {
+		return std::pair<std::string, std::string>(std::string(), std::string());
+	}
+
+	// 6. If the result of IsSanctionedSimpleUnitIdentifier(denominator) is false, then
+	//  a. Return false.
+	if (IsSanctionedSimpleUnitIdentifier(denominator)) {
+		return std::pair<std::string, std::string>(std::string(), std::string());
+	}
+	return std::pair<std::string, std::string>(numerator, denominator);
+}
+
