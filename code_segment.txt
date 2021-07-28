@@ -68,3 +68,23 @@ std::pair<std::string, std::string> IsWellFormedUnitIdentifier(std::string &unit
 	return std::pair<std::string, std::string>(numerator, denominator);
 }
 
+
+// ====================js code segment===========
+function sleep(ms) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve, ms);
+    })
+}
+
+var times = 5;
+
+function resolve () {
+    if (times-- >= 0) {
+        console.log(times)
+        sleep(500).then(resolve)
+    } else {
+        console.log("error")
+    }
+}
+
+resolve()
